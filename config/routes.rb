@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get "/carros", to: "carrsos#index"
   get "/coisas", to: "coisas#index"
   get "/users/:id", to: "users#show"
+  get "/task", to: "task#lista"
 end
