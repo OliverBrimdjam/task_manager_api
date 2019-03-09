@@ -1,0 +1,54 @@
+Sim. Você está iniciando o servidor, mas sem explicitar o IP e a porta. Aí dá ruim.
+
+O comando que você quer usar no c9 precisa explicitar ambos:
+-b para o IP
+-p para a porta
+
+rails server -b $IP -p $PORT
+ entendi
+ é que nos exemplos que estava vendo na internet não precisava disso
+ vou tentar agora
+ 
+ 
+ 
+ 
+ Pois é. Eles presumem que você está usando sua máquina local, não uma máquina remota =)
+ 
+ 
+ entendi, no caso dessa vez o que me enrolou é que apesar de saber que estou usando uma máquina remota
+ os exemplos de máquina remota me enganaram
+ kk
+ 
+ agora consegui ter problemas o/
+ No connection pool with 'primary' found.
+ 
+ Tem alguma treta com o banco de dados e Rails 5.2.3
+ Mas lembro que estava funcionando da última vez em que mexi aqui. O que rolou de lá pra cá?
+ 
+ rolou que é uma nova aplicação, que eu decidi iniciar para 
+ ver se eu sabia fazer do 0
+ =D
+ é pq eu to na praticância
+ 
+ 
+ 
+ 
+ Resolvido. Seu problema era com 2 coisas:
+ 1) Ele estava com uma versão recente do Rails 5.2, que tem questões de 
+ compatibilidade com o BD que estamos usando, SQLite3
+ 
+ 2) Uma gem chamada Bootsnap salva dados pré-processados, especialmente de 
+ configuração, pra agilizar o início dos aplicativos, como o servidor.
+ A merda mesmo foi que ele salvou as configurações usando uma versão incompatível 
+ (1.4, "já instalada, segundo o erro"). Mudei (veja o Gemfile e vai dar pra sacar
+ a mudança. Um git diff ajuda) e instalei. Mas, mesmo depois de instalar, não rolou.
+ Desinstalei o bootsnap e nada. Tirei ele da inicialização e nada. Apaguei os
+ arquivos temporários dele nada. Aí eu fechei o seu terminal e abri num novo. Aí
+ sim, finalmente, deu certo.
+ 
+ Tem algumas otimizações (como o bootsnap) que tem usos muito restritos. Eu prefiro
+ não usar e gastar 10-20s a mais a cada vez que eu reiniciar o servidor. De modo
+ geral, reiniciar o servidor é coisa rara. Então acho válido isso em troca de não
+ passar por erros obscuros, como esse de agora.
+ 
+ 
