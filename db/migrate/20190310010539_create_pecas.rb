@@ -1,0 +1,8 @@
+class CreatePecas < ActiveRecord::Migration[5.2]
+  def change
+    create_table :pecas do |t|
+      t.string :name
+      t.string :veiculo
+    end
+  end
+end

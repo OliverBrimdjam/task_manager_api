@@ -1,0 +1,3 @@
+class Porta < ApplicationRecord
+  
+end

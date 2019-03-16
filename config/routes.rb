@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get "/task", to: "task#lista"
   
   get "/pecas/:identificador/veiculo", to: "pecas#veiculo"
+  get "/porta/:identificador/lado", to: "porta#lado"
 end
